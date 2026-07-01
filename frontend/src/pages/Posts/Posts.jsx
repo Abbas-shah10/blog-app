@@ -36,14 +36,18 @@ const Posts = () => {
 
       {
         posts?.length > 0 ? (
-          <div className='flex gap-4'>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" >
             {posts.map((post) => (
               <Link>
-                <div className='card px-8 py-8 cursor-pointer'>
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-lg hover:-translate-y-1 transition-all">
                   <h1 className='text-2xl text-blue-500 font-semibold mb-4'>{post.title}</h1>
-                  <span className='text-2xl text-gray-400 font-bold mb-4'>{post.desc}</span>
-                  <p className='mt-3 text-right text-blue-400'>Created BY : {post.user.username}</p>
-                  <p className='mt-3 text-right'>Created At : {formatDate(post.createdAt)}</p>
+                  <p className="mt-2 text-slate-600 line-clamp-3">
+                    {post.desc}
+                  </p>
+                  <div className="mt-5 flex items-center justify-between text-sm text-slate-500 border-t pt-4">
+                    <span>👤 {post.user.username}</span>
+                    <span>{formatDate(post.createdAt)}</span>
+                  </div>
                 </div>
               </Link>
             ))}
