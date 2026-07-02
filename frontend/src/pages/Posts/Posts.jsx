@@ -6,7 +6,6 @@ const Posts = () => {
   const [error, setLoading] = useState(false);
   const posts = usePostStore((state) => state.posts)
   const getAllPosts = usePostStore((state) => state.getAllPosts)
-  console.log(posts)
 
   const formatDate = (dateStr) => {
     if (!dateStr) return;
@@ -19,7 +18,7 @@ const Posts = () => {
 
   useEffect(() => {
     getAllPosts()
-  }, [])
+  }, [getAllPosts])
 
 
 
@@ -38,15 +37,15 @@ const Posts = () => {
         posts?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" >
             {posts.map((post) => (
-              <Link>
+              <Link to={`/post/${post.id}`} key={post.id}>
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-lg hover:-translate-y-1 transition-all">
                   <h1 className='text-2xl text-blue-500 font-semibold mb-4'>{post.title}</h1>
                   <p className="mt-2 text-slate-600 line-clamp-3">
                     {post.desc}
                   </p>
                   <div className="mt-5 flex items-center justify-between text-sm text-slate-500 border-t pt-4">
-                    <span>👤 {post.user.username}</span>
-                    <span>{formatDate(post.createdAt)}</span>
+                    <span>👤 {post.user?.username}</span>
+                    <span>{formatDate(post?.createdAt)}</span>
                   </div>
                 </div>
               </Link>

@@ -8,6 +8,7 @@ import Posts from './pages/Posts/Posts.jsx'
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from 'react-router-dom'
 import CreatePost from './pages/Posts/CreatePost.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import PostsDetails from './pages/Posts/PostsDetails.jsx'
 
 
 
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
     <>
       <Route path='/' element={<App />} >
         <Route path="" element={<Posts />} />
+        <Route path='post/:id' element={<PostsDetails />} />
         <Route element={<ProtectedRoute />}>
           <Route path='create-post' element={<CreatePost />} />
         </Route>

@@ -71,4 +71,20 @@ const deletePost = async (req, res) => {
     }
 }
 
-export { createPost, getAllPosts, updatePost, deletePost }
+const getPostById = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const Post = await posts.findByPk(id)
+
+        if (!Post) {
+            res.status(400).json({ message: "Could not find the post with this id" })
+        } else {
+            res.status(200).json({ message: "Fetched post ", Post })
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Server error" })
+    }
+}
+
+export { createPost, getAllPosts, updatePost, deletePost, getPostById }
